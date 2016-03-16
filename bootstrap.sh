@@ -14,6 +14,9 @@ sudo npm install -g bower
 sudo npm install -g grunt-cli
 sudo npm install -g yo
 sudo sed  -i "s/dbPath\: \/var\/lib\/mongodb/dbPath\: \/vagrant_data/" /etc/mongod.conf
+sudo sed  -r -i "s/root .*/root \/vagrant\/frontend\/public_html;/" /etc/nginx/sites-enabled/default;
+sudo sed -r -i "s/^(\s*server_name.*)/\1\n\tlocation \/api\/{\n\t\tproxy_set_header X-Forwarded-Host \$host;\n\t\tproxy_set_header X-Forwarded-Server \$host;\n\t\tproxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;\n\t\tproxy_pass http:\/\/127.0.0.1:3001\/;\n\t}/" /etc/nginx/sites-enabled/default
+sudo service nginx reload
 echo nginx -v
 echo mongo --version
 echo "node installed: ` node -v `"
