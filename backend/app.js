@@ -1,8 +1,9 @@
 'use strict';
 
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
-var bodyParser = require('body-parser');
+var express     = require('express');        // call express
+var app         = express();                 // define our app using express
+var bodyParser  = require('body-parser');
+var fs          = require("fs");
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -21,13 +22,12 @@ var port = process.env.PORT || 3001;        // set our port
 
 var router = express.Router();              // get an instance of the express Router
 
-var controllers = ['auth', 'challanges', 'users'];
-
-for (var i in controllers) {
-    var ctrlName = controllers[i];
-    require('./app/controllers/' + ctrlName)(router);
+var controllerPath="./app/controllers/"; //add one folder then put your route files there my router folder name is routers
+fs.readdirSync(controllerPath).forEach(function(file) {
+    var ctrlName = controllerPath + file;
+    require(ctrlName)(router);
     console.log(ctrlName + ' controller initialized');
-}
+});
 
 // REGISTER OUR ROUTES -------------------------------
 
