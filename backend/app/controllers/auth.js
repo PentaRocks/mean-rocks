@@ -3,6 +3,8 @@ module.exports = function(router) {
  
     router.get('/login', function(req, res) {
         
-        res.json({ message: 'hooray! welcome to our api!' });   
+        res.json({ message: 'auth: login' });   
     });
+
+    return router;
 }
