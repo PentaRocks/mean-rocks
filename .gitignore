@@ -33,6 +33,7 @@ node_modules
 .node_repl_history
 .vagrant
 
+/nbproject
 /frontend/Rocks Frontend/nbproject/private/
 /frontend/nbproject/private/
 /nbproject/private/
