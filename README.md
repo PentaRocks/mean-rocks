@@ -15,3 +15,4 @@
 3. To start the nodejs application: 
 	* move to the backend directory: `cd /vagrant/backend`
 	* run the application using: `node app.js` (this will be added later to the provisioner so you will not have to run it manually)
+	* to restart the application on file changes in backend/app start the application with `nodemon app.js`

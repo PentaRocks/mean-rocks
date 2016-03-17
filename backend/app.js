@@ -1,6 +1,7 @@
 'use strict';
 
 var express     = require('express');        // call express
+var http		= require('http');
 var app         = express();                 // define our app using express
 var bodyParser  = require('body-parser');
 var fs          = require("fs");
@@ -10,7 +11,7 @@ var fs          = require("fs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 3001;        // set our port
+app.set('port', process.env.PORT || 3001);		// set our port
 
 // MONGODB setup
 // =============================================================================
@@ -36,5 +37,6 @@ app.use('/api', router);
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
-console.log('Magic happens on port ' + port);
+http.createServer(app).listen(app.get('port'), function(){
+    console.log('Magic happenes on port: ' + app.get('port'));	
+});
