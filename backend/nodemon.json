@@ -13,7 +13,8 @@
     "restart": "echo '--------------------------------------------------------------------\nApp restarted due to file change:\n'$FILENAME'\"\n--------------------------------------------------------------------'"
   },
   "watch": [
-    "app/"
+    "app/",
+    "app.js"
   ],
   "env": {
     "NODE_ENV": "development"

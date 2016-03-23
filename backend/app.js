@@ -1,7 +1,7 @@
 'use strict';
 
 var express     = require('express');        // call express
-var http		= require('http');
+var http	= require('http');
 var app         = express();                 // define our app using express
 var bodyParser  = require('body-parser');
 var fs          = require("fs");
@@ -12,22 +12,31 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.set('port', process.env.PORT || 3001);		// set our port
+app.set('db', process.env.DB || 'localhost:27017/meanrockdb');
 
 // MONGODB setup
 // =============================================================================
-//var mongoose   = require('mongoose');
-//mongoose.connect('mongodb://localhost:27017/Iganiq8o');
+var db = require('./db.js');
+db.connect('mongodb://' + app.get('db'), function(){
+    console.log("Connected to mongodb on: " + app.get('db'));
+});
+
+// log requests
+app.use(function(req, res, next){
+    console.log('%s %s', req.method, req.url);
+    next();
+});
 
 // ROUTES FOR OUR API
 // =============================================================================
 
 var router = express.Router();              // get an instance of the express Router
 
-var controllerPath="./app/controllers/"; //add one folder then put your route files there my router folder name is routers
-fs.readdirSync(controllerPath).forEach(function(file) {
-    var ctrlName = controllerPath + file;
-    require(ctrlName)(router);
-    console.log(ctrlName + ' controller initialized');
+var routePath="./app/routes/"; //add one folder then put your route files there my router folder name is routers
+fs.readdirSync(routePath).forEach(function(file) {
+    var routeName = routePath + file;
+    require(routeName)(router);
+    console.log(routeName + ' router initialized');
 });
 
 // REGISTER OUR ROUTES -------------------------------
