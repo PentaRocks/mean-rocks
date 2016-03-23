@@ -1,6 +1,9 @@
 <div>
-    <div ng-repeat="game in games">
-        <div>{{game.challenger}}</div>
-    </div>
+
+        <div>playing against {{game.challenger}}</div>
+        <div ng-repeat="action in actions">
+            <div><button ng-click="play(action)">{{action}}</button></div>
+        </div>
+
     
 </div>

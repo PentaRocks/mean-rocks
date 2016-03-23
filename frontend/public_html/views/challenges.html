@@ -1,0 +1,12 @@
+
+<div>
+    <h3>Challenges:</h3>
+    <div ng-repeat="game in games">
+        <div>
+            <span>{{game.challenger}}</span>
+            <button ng-click="accept(game)">accept</button>
+            <button ng-click="cancel(game)">cancel</button>
+        </div> 
+    </div>
+    
+</div>
