@@ -20,4 +20,27 @@ angular.module('rock').config(function($httpProvider) {
             }
         };
     }]);
-});
+}).
+factory('GameService', function(){
+    
+    var games = [
+        {_id: 1, 'challenger': 'cdad@mail.com', 'status': 'challenge'},
+        {_id: 2, 'challenger': 'ancagfr@mail.com', 'status': 'challenge'},
+        {_id: 3, 'challenger': 'ancagfr@mail.com', 'status': 'challenge'}
+      ];
+      
+      function getGame(id) {
+          for(var i = 0, len = games.length; i < len; i++){
+              if(games[i]._id == id){
+                  return games[i];
+              }
+          }
+      }
+      return {
+          'getGame': getGame,
+          'getGames': function(){ return games;}
+      };
+    
+})      
+
+;
