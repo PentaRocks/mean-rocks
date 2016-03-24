@@ -32,11 +32,13 @@ app.use(function(req, res, next){
 
 var router = express.Router();              // get an instance of the express Router
 
-var routePath="./app/routes/"; //add one folder then put your route files there my router folder name is routers
+var routePath = "./app/routes/"; //add one folder then put your route files there my router folder name is routers
 fs.readdirSync(routePath).forEach(function(file) {
-    var routeName = routePath + file;
-    require(routeName)(router);
-    console.log(routeName + ' router initialized');
+    if (!/abstract/i.test(file)){
+        var routeName = routePath + file;
+        require(routeName)(router);
+        console.log(routeName + ' router initialized');
+    }
 });
 
 // REGISTER OUR ROUTES -------------------------------
