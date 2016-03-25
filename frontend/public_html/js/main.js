@@ -27,8 +27,7 @@ rock.controller("IndexCtrl",function($scope, $http){
             '/api/login',
             $scope.data)
         .then(
-            
-            function(){
+            function(data){
                 $window.sessionStorage.token = $scope.data.email;
                 $location.path('/');
             },

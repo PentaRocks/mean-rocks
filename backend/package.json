@@ -1,7 +1,7 @@
 {
     "name": "backend",
     "version": "1.0.0",
-    "description": "",
+    "description": "mean rocks backend",
     "main": "app.js",
     "dependencies": {
         "express": "~4.0.0",
